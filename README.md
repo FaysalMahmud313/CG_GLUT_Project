@@ -97,7 +97,7 @@ scene is waiting for, and the bottom line lists the toggles — so you never hav
 1. **Download or clone** this repository.
 
 ```bash
-   git clone https://github.com/<your-username>/CG_GLUT_Project.git
+   https://github.com/FaysalMahmud313/CG_GLUT_Project.git
 ```
 
 2. **Open Code::Blocks.**

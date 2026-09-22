@@ -94,10 +94,10 @@ scene is waiting for, and the bottom line lists the toggles — so you never hav
 
 ## How to run
 
-1. **Download or clone** this repository.
+1. **Download or clone** this repository — [FaysalMahmud313/CG_GLUT_Project](https://github.com/FaysalMahmud313/CG_GLUT_Project)
 
 ```bash
-   https://github.com/FaysalMahmud313/CG_GLUT_Project.git
+   git clone https://github.com/FaysalMahmud313/CG_GLUT_Project.git
 ```
 
 2. **Open Code::Blocks.**

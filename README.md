@@ -1,52 +1,86 @@
-# City → Electric Train → Airplane → City Traffic
+# From Nature to Urban Life
 
-A 2D animated city scene built in **C++ with OpenGL / GLUT**. The program runs as one continuous journey: a ship leaves the harbour, an electric train pulls into the station through a storm, an airplane crosses a rainbow sky and lands, and finally the city street fills with traffic that shifts from day to night.
+An animated OpenGL / GLUT scene in C++ that travels through four connected chapters —
+a riverside town, an electric train arriving through a storm, an airplane landing under a
+rainbow, and a city street that fades from day into night.
 
-Everything on screen — buildings, buses, the train, the ship, the rainbow, the rain, the stars — is drawn from OpenGL primitives (quads, triangles, line strips and points). No textures or image files are used.
+Everything on screen is drawn from OpenGL primitives (polygons, triangle fans, line strips).
+No textures or sprite files are used. Sound is played through the Windows MCI API.
 
 ---
 
 ## Screenshots
 
-### 1. Harbour city — ships on the river
-![Harbour city](screenshots/Screenshot%20%28183%29.png)
+### Scene 1 — Riverside town
+![Riverside town](screenshots/Screenshot%20%28183%29.png)
 
-### 2. Electric train easing into the station during a storm
+### Scene 2 — Electric train easing into the station through a storm
 ![Electric train in storm](screenshots/Screenshot%20%28179%29.png)
 
-### 3. Airplane crossing the rainbow
+### Scene 3 — Airplane and rainbow after the rain clears
 ![Airplane and rainbow](screenshots/Screenshot%20%28180%29.png)
 
-### 4. City traffic — daytime
+### Scene 4 — City traffic by day
 ![City traffic by day](screenshots/Screenshot%20%28181%29.png)
 
-### 5. City traffic — night
+### Scene 4 — City traffic by night
 ![City traffic by night](screenshots/Screenshot%20%28182%29.png)
+
+---
+
+## The four scenes
+
+| # | Scene | What happens |
+| --- | --- | --- |
+| 1 | **Riverside town** | Windmills turn, ships sit at the bank, shops and tea stalls line the road. Press `S` and the ship sails off — which carries you into Scene 2. |
+| 2 | **Electric train** | A three-coach electric train runs under catenary wires. Press `R` to bring on the storm; rain, lightning and a smooth deceleration into City Station follow, then Scene 3 begins. |
+| 3 | **Airplane & rainbow** | The storm fades, a seven-band rainbow appears and birds flap past. Press `L` and the plane banks down to land, ending in Scene 4. |
+| 4 | **City traffic** | A skyline, street lights and six vehicles — cars plus the `CITY`, `BRTC` and `AIUB` buses. The sky drifts from day to night on its own; press `E` to dock the ship. |
 
 ---
 
 ## Features
 
-- **Scene sequence** — harbour → electric train → airplane → city traffic, each scene flowing into the next.
-- **Day / night cycle** — the sky fades from blue to dark purple, the sun is replaced by a crescent moon and stars, building windows and street lamps light up.
-- **Weather effects** — drifting clouds, animated rain during the storm scene, and a multi-band rainbow.
-- **Vehicles** — a ship with a smoking funnel, a multi-coach electric train, cars, and the `CITY`, `BRTC` and `AIUB` buses moving at different speeds.
-- **Interactive control** — the animation can be paused at any moment and individual objects (ship, airplane) can be started or stopped from the keyboard.
-- **On-screen hints** — the top-left line of text always tells you which key the current scene is waiting for.
+- **Four linked scenes** that flow into one another automatically, with manual skip and rewind.
+- **Day / night cycle** — sky gradient, sun setting, moon and 50 stars, lit windows and street-lamp glows.
+- **Weather system** — 160 rain drops, randomised lightning bolts with a full-screen flash, and a rainbow that fades in as the storm clears.
+- **Animated vehicles** — an electric train with turning wheels and a working pantograph, a ship with a wake trail, cars and three named buses.
+- **Sound** — looping ambience per scene (ship, train, thunder, plane, city) with pause/resume support.
+- **Extras** — soft shadows under moving objects, animated water ripples, blinking building windows, and spinning windmills at three speeds.
 
 ---
 
 ## Controls
 
+Eleven keys in total. The top-left corner of the window always shows the one the current
+scene is waiting for, and the bottom line lists the toggles — so you never have to memorise them.
+
+### Story keys — these advance the animation
+
+| Key | Scene | Action |
+| --- | --- | --- |
+| `S` | 1 | Send the ship off (the train then starts on its own) |
+| `R` | 2 | Bring on the storm — the train begins easing into the station |
+| `L` | 3 | Begin the airplane's landing |
+| `E` | 4 | Stop the ship in the city |
+
+### Toggle keys — use them any time
+
 | Key | Action |
 | --- | --- |
-| `SPACE` | Pause / resume the animation (`PAUSED — press SPACE to continue` appears on screen) |
-| `S` | Send the ship off — the train starts on its own afterwards |
-| `E` | Stop the ship |
-| `L` | Begin the airplane's landing |
-| `ESC` | Quit the program |
+| `N` | Day ⇄ night (Scene 4) |
+| `W` | Windmill speed — stopped → normal → fast |
+| `B` | City lights on / off |
+| `T` | Traffic stop / go (Scene 4) |
 
-> The prompt in the top-left corner of the window always shows the key the current scene expects next, so you can simply follow it.
+### Playback
+
+| Key | Action |
+| --- | --- |
+| `SPACE` | Pause / resume (animation **and** sound) |
+| `←` | Rewind — steps backwards, even across scene boundaries |
+| `→` | Skip forward to the next scene |
+| `ESC` | Close the sound devices and exit |
 
 ---
 
@@ -54,7 +88,7 @@ Everything on screen — buildings, buses, the train, the ship, the rainbow, the
 
 - **Code::Blocks** with the **MinGW / GCC** compiler
 - **freeglut** (or GLUT) development files
-- OpenGL drivers (already present on any normal Windows install)
+- Windows — the project uses `windows.h` and `mmsystem.h` (MCI) for audio
 
 ---
 
@@ -70,13 +104,25 @@ Everything on screen — buildings, buses, the train, the ship, the rainbow, the
 
 3. Click **Open an existing project** on the start page (or **File → Open…**).
 
-4. Browse to the project folder you just downloaded and **select the `.cbp` file**
-   (`CG_GLUT_Project.cbp`), then click **Open**.
+4. Browse to the project folder and **select the `.cbp` file** (`CG_GLUT_Project.cbp`), then click **Open**.
 
-5. Press **F9** (*Build and run*). The animation window opens straight away.
+5. Press **F9** (*Build and run*). The window titled *From Nature to Urban Life* opens at 1000 × 500.
 
-> The `.cbp` file already carries the linker settings, so there is nothing to configure —
-> as long as freeglut is installed (see below), it builds on the first try.
+### Linker settings
+
+The `.cbp` already carries these, but if you build a fresh project, add them under
+**Project → Build options… → Linker settings → Link libraries**:
+
+```
+freeglut
+opengl32
+glu32
+winmm
+gdi32
+```
+
+> **`winmm` is required** — without it the build fails on `mciSendStringA` and the sound
+> will not compile.
 
 ### First-time only — installing freeglut for MinGW
 
@@ -94,18 +140,7 @@ Skip this if GLUT already works on your machine.
 
 3. Restart Code::Blocks.
 
-If you ever need to rebuild the project settings by hand, these are the libraries under
-**Project → Build options… → Linker settings → Link libraries**:
-
-```
-freeglut
-opengl32
-glu32
-winmm
-gdi32
-```
-
-### Running without Code::Blocks
+### Building from the terminal instead
 
 With MinGW's `bin` folder on your `PATH`:
 
@@ -114,13 +149,27 @@ g++ main.cpp -o city.exe -lfreeglut -lopengl32 -lglu32 -lwinmm -lgdi32
 city.exe
 ```
 
-On Linux:
+---
 
-```bash
-sudo apt install freeglut3-dev
-g++ main.cpp -o city -lglut -lGLU -lGL
-./city
-```
+## Sound setup
+
+Audio is optional — the program runs silently if no clips are found.
+
+Put a **`Sound`** folder next to the executable (the program also looks one, two and three
+levels up, so `Sound/` beside `main.cpp` works while running from Code::Blocks). Drop in
+`.wav` or `.mp3` files whose **names contain** these keywords:
+
+| Keyword in filename | Used for |
+| --- | --- |
+| `cruise` | Ship engine loop |
+| `train` | Train ambience (Scene 2) |
+| `thunder` | Storm loop |
+| `small-air` | Airplane ambience (Scene 3) |
+| `landing` | One-shot landing sound |
+| `horn` | City ambience (Scene 4) |
+
+For example `cruise-ship-loop.wav`, `thunder-storm.mp3`. Matching is case-insensitive and
+the first match wins.
 
 ---
 
@@ -129,10 +178,28 @@ g++ main.cpp -o city -lglut -lGLU -lGL
 ```
 CG_GLUT_Project/
 ├── CG_GLUT_Project.cbp   # Code::Blocks project file — open this one
-├── main.cpp              # all drawing, animation and input handling
+├── main.cpp              # all drawing, animation, input and audio
+├── Sound/                # optional audio clips (see above)
 ├── screenshots/          # images used in this README
 └── README.md
 ```
+
+---
+
+## Code organisation
+
+`main.cpp` is split into five authored sections, each with its own function prefix:
+
+| Prefix | Author | Responsibility |
+| --- | --- | --- |
+| `T_` | Tonmoy | Sky, sun, moon, stars, clouds, rainbow, day/night |
+| `M_` | Mridul | Hills, grass, water, river bank, railway track, roads, windmills |
+| `F_` | Faysal | Buildings, shops, skyline, station, street lights |
+| `R_` | Rumi | Train, coaches, cars and buses, traffic |
+| `E_` | Epu | Ship, airplane, birds, rain, lightning, HUD |
+
+Each section exposes one entry point (`Tonmoy_SkyAndBackground()`, `Mridul_LandWaterAndTrack()`,
+and so on) and `display()` calls them back-to-front.
 
 ---
 
@@ -141,15 +208,17 @@ CG_GLUT_Project/
 | Problem | Fix |
 | --- | --- |
 | `GL/glut.h: No such file or directory` | The freeglut headers were not copied into `MinGW\include\GL\`. Redo the first-time setup. |
-| `undefined reference to 'glutInit'` / `'glBegin'` | The linker libraries are missing — add `freeglut`, `opengl32` and `glu32` in *Build options → Linker settings*. |
-| `freeglut.dll is missing` when the program starts | Copy `freeglut.dll` into `C:\Windows\System32\` or next to the built `.exe`. |
+| `undefined reference to 'glutInit'` / `'glBegin'` | Add `freeglut`, `opengl32` and `glu32` under *Build options → Linker settings*. |
+| `undefined reference to 'mciSendStringA'` | `winmm` is missing from the link libraries. |
+| `freeglut.dll is missing` on launch | Copy `freeglut.dll` into `C:\Windows\System32\` or next to the built `.exe`. |
+| Runs, but no sound | The `Sound` folder was not found, or the filenames don't contain the keywords listed above. |
 | Code::Blocks says no compiler is set | **Settings → Compiler → Toolchain executables** and point it at your MinGW folder. |
-| Window opens but stays blank | Make sure `glutSwapBuffers()` is called at the end of the display function. |
-| Animation runs too fast or too slow | Adjust the delay passed to `glutTimerFunc()`. |
+| Animation too fast or too slow | Change the `16` in `glutTimerFunc(16, update, 0)` — it's the frame delay in milliseconds. |
 
 ---
 
-## Author
+## Authors
 
-**Error Crafters** — Computer Science, American International University-Bangladesh (AIUB)  
-Course project in Computer Graphics.
+Computer Graphics course project — **American International University-Bangladesh (AIUB)**
+
+Tonmoy · Mridul · Faysal · Rumi · Epu
